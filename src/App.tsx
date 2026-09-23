@@ -1,122 +1,86 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import styled from "styled-components";
+import {DefaultStyle} from "./components/GlobalStyles/GlobalStyles.tsx";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    return (
+        <>
+            <DefaultStyle/>
+            <CardWrapper>
+                <Card>
+                    <CardImage src={"./images/1.png"}/>
+                    <CardTitle>Headline</CardTitle>
+                    <CardText>Faucibus. Faucibus. Sit sit sapien sit tempusrisu ut. Sit molestie ornare in venen.</CardText>
+                    <ButtonWrapper>
+                        <Button $primary>See more</Button>
+                        <Button>Save</Button>
+                    </ButtonWrapper>
+                </Card>
+            </CardWrapper>
+        </>
+    )
 }
+
+const CardWrapper = styled.section`
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 10px 22px 10px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 4px 20px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+`
+
+const CardImage = styled.img`
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+`
+const CardTitle = styled.h3`
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+    align-self: flex-start;
+    margin-left: 10px;
+`
+
+const CardText = styled.p`
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 167%;
+    color: #abb3ba;
+    width: 260px;
+    margin: 0 auto;
+`
+const ButtonWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 12px;
+    align-self: flex-start;
+    margin-left: 10px;
+`
+const Button = styled.button<{ $primary ?: boolean; }>`
+    border-radius: 5px;
+    width: 86px;
+    height: 30px;
+    background: ${props => props.$primary ? "#4e71fe" : "#fff" } ;
+    color: ${props => props.$primary ? "#fff" : "#4e71fe" } ;
+    border: 2px solid #4e71fe;
+`
 
 export default App
